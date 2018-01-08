@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="AddNewStudent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="age" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="course" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Class" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AvrgMark" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddNewStudentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddNewStudentResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShowAllStudents">
+        <s:complexType />
+      </s:element>
+      <s:element name="ShowAllStudentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ShowAllStudentsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveStudent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StudentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveStudentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RemoveStudentResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="refresh">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StudentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="age" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="course" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Class" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AvrgMark" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="refreshResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="refreshResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddNewStudentSoapIn">
+    <wsdl:part name="parameters" element="tns:AddNewStudent" />
+  </wsdl:message>
+  <wsdl:message name="AddNewStudentSoapOut">
+    <wsdl:part name="parameters" element="tns:AddNewStudentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllStudentsSoapIn">
+    <wsdl:part name="parameters" element="tns:ShowAllStudents" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllStudentsSoapOut">
+    <wsdl:part name="parameters" element="tns:ShowAllStudentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveStudentSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveStudent" />
+  </wsdl:message>
+  <wsdl:message name="RemoveStudentSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveStudentResponse" />
+  </wsdl:message>
+  <wsdl:message name="refreshSoapIn">
+    <wsdl:part name="parameters" element="tns:refresh" />
+  </wsdl:message>
+  <wsdl:message name="refreshSoapOut">
+    <wsdl:part name="parameters" element="tns:refreshResponse" />
+  </wsdl:message>
+  <wsdl:portType name="StudentInfoSOAPSoap">
+    <wsdl:operation name="AddNewStudent">
+      <wsdl:input message="tns:AddNewStudentSoapIn" />
+      <wsdl:output message="tns:AddNewStudentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllStudents">
+      <wsdl:input message="tns:ShowAllStudentsSoapIn" />
+      <wsdl:output message="tns:ShowAllStudentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveStudent">
+      <wsdl:input message="tns:RemoveStudentSoapIn" />
+      <wsdl:output message="tns:RemoveStudentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="refresh">
+      <wsdl:input message="tns:refreshSoapIn" />
+      <wsdl:output message="tns:refreshSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="StudentInfoSOAPSoap" type="tns:StudentInfoSOAPSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddNewStudent">
+      <soap:operation soapAction="http://tempuri.org/AddNewStudent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllStudents">
+      <soap:operation soapAction="http://tempuri.org/ShowAllStudents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveStudent">
+      <soap:operation soapAction="http://tempuri.org/RemoveStudent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="refresh">
+      <soap:operation soapAction="http://tempuri.org/refresh" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StudentInfoSOAPSoap12" type="tns:StudentInfoSOAPSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddNewStudent">
+      <soap12:operation soapAction="http://tempuri.org/AddNewStudent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllStudents">
+      <soap12:operation soapAction="http://tempuri.org/ShowAllStudents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveStudent">
+      <soap12:operation soapAction="http://tempuri.org/RemoveStudent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="refresh">
+      <soap12:operation soapAction="http://tempuri.org/refresh" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StudentInfoSOAP">
+    <wsdl:port name="StudentInfoSOAPSoap" binding="tns:StudentInfoSOAPSoap">
+      <soap:address location="http://localhost:57508/StudentInfoSOAP.asmx" />
+    </wsdl:port>
+    <wsdl:port name="StudentInfoSOAPSoap12" binding="tns:StudentInfoSOAPSoap12">
+      <soap12:address location="http://localhost:57508/StudentInfoSOAP.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
